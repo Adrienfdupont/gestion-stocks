@@ -1,21 +1,7 @@
-# Application de gestion des stocks
+# Description fonctionnelle du besoin
 
-## Besoins détaillés
+En tant que personnel de l'entrepôt je veux pouvoir ajouter une quantité sur un article pour que le stock soit mis à jour
 
-### Ajout d’un article en stock :
-Par qui ?
-Quelles caractéristiques ?
+En tant que personnel de l'entrepôt je veux pouvoir réduire la quantité d'un article pour que le stock soit mis à jour sans que celui ci ne disparaisse si la quantité tombe à 0 et recevoir une alerte si la quantité demandée est supérieure à la quantité disponible
 
-### Retirer un article du stock :
-Par qui ?
-Quantité à 0 ou suppression ?
-Archivé ?
-
-### Obtenir un rapport :
-Par qui ?
-Quelles infos dans le rapport ?
-
-### Gérer les erreurs (stock insuffisant, article inexistant, etc.) ?
-Vérification à quels moments ?
-Automatique ?
-Stock insuffisant de combien ?
+En tant que personnel de l'entrepôt je veux pouvoir obtenir un rapport des stocks pour connaître la quantité de chaque article avec une indication que la quantité est égale ou inférieure à 10
