@@ -16,6 +16,10 @@ describe('Stock Management', () => {
             addQuantity(stock, 1, 10);
             expect(stock.find(item => item.id === 1).quantity).toBe(30);
         });
+
+        it('Should throw error if article unexsiting', () => {
+            expect(() => addQuantity(stock, 4, 10)).toThrow('Article not found');
+        });
     });
 
     describe('Reduce quantity of an article', () => {
@@ -32,6 +36,10 @@ describe('Stock Management', () => {
 
         it('Should alert if requested quantity is more than available quantity', () => {
             expect(() => reduceQuantity(stock, 2, 10)).toThrow('Quantity requested is more than available');
+        });
+
+        it('Should throw error if article unexsiting', () => {
+            expect(() => reduceQuantity(stock, 13, 8)).toThrow('Article not found');
         });
     });
 

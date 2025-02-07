@@ -1,10 +1,16 @@
 function addQuantity(stock, articleId, quantityToAdd) {
     const article = stock.find(article => article.id === articleId);
+    if (!article) {
+        throw new Error('Article not found');
+    }
     article.quantity += quantityToAdd;
 }
 
 function reduceQuantity(stock, articleId, quantityToReduce) {
     const article = stock.find(article => article.id === articleId);
+    if (!article) {
+        throw new Error('Article not found');
+    }
     if (quantityToReduce > article.quantity) {
         throw new Error('Quantity requested is more than available');
     }
