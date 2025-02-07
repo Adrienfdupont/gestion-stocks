@@ -1,4 +1,7 @@
 function addQuantity(stock, articleId, quantityToAdd) {
+    if (typeof quantityToAdd !== 'number' || quantityToAdd <= 0) {
+        throw new Error('Quantity must be a positive number');
+    }
     const article = stock.find(article => article.id === articleId);
     if (!article) {
         throw new Error('Article not found');
@@ -7,6 +10,9 @@ function addQuantity(stock, articleId, quantityToAdd) {
 }
 
 function reduceQuantity(stock, articleId, quantityToReduce) {
+    if (typeof quantityToReduce !== 'number' || quantityToReduce <= 0) {
+        throw new Error('Quantity must be a positive number');
+    }
     const article = stock.find(article => article.id === articleId);
     if (!article) {
         throw new Error('Article not found');

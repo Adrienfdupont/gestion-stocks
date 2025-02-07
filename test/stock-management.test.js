@@ -20,6 +20,10 @@ describe('Stock Management', () => {
         it('Should throw error if article unexsiting', () => {
             expect(() => addQuantity(stock, 4, 10)).toThrow('Article not found');
         });
+
+        it('Should throw error if quantity is not a postive number', () => {
+            expect(() => addQuantity(stock, 1, -8)).toThrow('Quantity must be a positive number');
+        });
     });
 
     describe('Reduce quantity of an article', () => {
@@ -40,6 +44,10 @@ describe('Stock Management', () => {
 
         it('Should throw error if article unexsiting', () => {
             expect(() => reduceQuantity(stock, 13, 8)).toThrow('Article not found');
+        });
+
+        it('Should throw error if quantity is not a postive number', () => {
+            expect(() => addQuantity(stock, 2, -8)).toThrow('Quantity must be a positive number');
         });
     });
 
