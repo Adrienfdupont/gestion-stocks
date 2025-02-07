@@ -1,10 +1,10 @@
 function addQuantity(stock, articleId, quantityToAdd) {
-    const article = stock.find(article => article.articleId === articleId);
+    const article = stock.find(article => article.id === articleId);
     article.quantity += quantityToAdd;
 }
 
 function reduceQuantity(stock, articleId, quantityToReduce) {
-    const article = stock.find(article => article.articleId === articleId);
+    const article = stock.find(article => article.id === articleId);
     if (quantityToReduce > article.quantity) {
         throw new Error('Quantity requested is more than available');
     }
