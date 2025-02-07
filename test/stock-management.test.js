@@ -31,8 +31,7 @@ describe('Stock Management', () => {
         });
 
         it('Should alert if requested quantity is more than available quantity', () => {
-            const result = reduceQuantity(stock, 2, 10);
-            expect(result).toThrow('Quantity requested is more than available');
+            expect(() => reduceQuantity(stock, 2, 10)).toThrow('Quantity requested is more than available');
         });
     });
 
@@ -42,7 +41,7 @@ describe('Stock Management', () => {
             expect(report).toEqual([
                 { id: 1, name: 'Pomme verte', quantity: 20, lowStock: false },
                 { id: 2, name: 'Clémentine', quantity: 5, lowStock: true },
-                { id: 3, name: 'Grappe de raisin', quantity: 14, lowStock: true }
+                { id: 3, name: 'Grappe de raisin', quantity: 14, lowStock: false }
             ]);
         });
     });
