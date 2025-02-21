@@ -1,4 +1,4 @@
-function addQuantity(stock, articleId, quantityToAdd) {
+function addQuantity(stock, articleId, quantityToAdd, moveHistory) {
     if (typeof quantityToAdd !== 'number' || quantityToAdd <= 0) {
         throw new Error('Quantity must be a positive number');
     }
@@ -7,9 +7,12 @@ function addQuantity(stock, articleId, quantityToAdd) {
         throw new Error('Article not found');
     }
     article.quantity += quantityToAdd;
+    notifyStockMove(article, quantityToAdd);
+
+    addHistoryEntry(moveHistory, articleId, quantityToAdd);
 }
 
-function reduceQuantity(stock, articleId, quantityToReduce) {
+function reduceQuantity(stock, articleId, quantityToReduce, moveHistory) {
     if (typeof quantityToReduce !== 'number' || quantityToReduce <= 0) {
         throw new Error('Quantity must be a positive number');
     }
@@ -20,7 +23,13 @@ function reduceQuantity(stock, articleId, quantityToReduce) {
     if (quantityToReduce > article.quantity) {
         throw new Error('Quantity requested is more than available');
     }
-    article.quantity -= quantityToReduce;
+    const newQuantity = article.quantity - quantityToReduce;
+    article.quantity = newQuantity;
+    notifyStockMove(article, -quantityToReduce);
+
+    addHistoryEntry(moveHistory, articleId, quantityToReduce);
+
+    checkLowStock(article, newQuantity);
 }
 
 function getStockReport(stock) {
@@ -37,4 +46,42 @@ function getStockReport(stock) {
     return report;
 }
 
-module.exports = { addQuantity, reduceQuantity, getStockReport };
+function checkLowStock(article, newQuantity) {
+    const LOW_STOCK_THRESHOLD = 5;
+
+    if (article.quantity <= LOW_STOCK_THRESHOLD) {
+        console.warn(`Alert: The stock of article "${article.name}" (ID: ${article.id}) is now at ${newQuantity} units.`);
+    }
+}
+
+function addHistoryEntry(moveHistory, articleId, move) {
+    const previousHistoryLength = moveHistory.length;
+    const entry = {
+        id: moveHistory.length + 1,
+        articleId,
+        move,
+        date: new Date(Math.floor(new Date().getTime() / 1000) * 1000)
+    };
+    moveHistory.push(entry);
+
+    if (moveHistory.length > previousHistoryLength) {
+        notifyNewHistoryEntry();
+    }
+}
+
+function viewHistory(moveHistory) {
+    moveHistory.forEach(entry => {
+        const formattedDate = new Date(entry.date).toLocaleString('fr-FR');
+        console.log(`ID: ${entry.id} | Article ID: ${entry.articleId} | Move: ${entry.move} units | Date: ${formattedDate}`);
+    });
+}
+
+function notifyStockMove(article, move) {
+    console.log(`Stock of "${article.name}" has been updated by ${move}`);
+}
+
+function notifyNewHistoryEntry() {
+    console.log('New history entry added');
+}
+
+module.exports = { addQuantity, reduceQuantity, getStockReport, viewHistory };
