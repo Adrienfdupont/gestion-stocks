@@ -47,7 +47,24 @@ describe('Stock Management', () => {
         });
 
         it('Should throw error if quantity is not a postive number', () => {
-            expect(() => addQuantity(stock, 2, -8)).toThrow('Quantity must be a positive number');
+            expect(() => addQuantity(stock, 2, -8)).toThrow('Quantity must be a positive number', moveHistory);
+        });
+    });
+
+    describe('Stock move notification', () => {
+        it('Should notify sotck move if quantity added with success', () => {
+            console.log = jest.fn();
+            addQuantity(stock, 1, 10, moveHistory);
+            expect(console.log).toHaveBeenCalledWith('Stock of "Pomme verte" has been updated by 10');
+        });
+
+        it('Should not notify if quantity reduction failed', () => {
+            console.log = jest.fn();
+            try {
+                reduceQuantity(stock, 2, 10);
+            } catch (e) {
+                expect(console.log).not.toHaveBeenCalled();
+            }
         });
     });
 
