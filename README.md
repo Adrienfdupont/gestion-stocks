@@ -18,7 +18,7 @@ En tant que personnel de l'entrepôt, je veux recevoir une erreur si la quantit�
 
 En tant que personnel de l'entrepôt je veux pouvoir obtenir un rapport des stocks pour connaître la quantité de chaque article avec une indication que la quantité est égale ou inférieure à 10
 
-En tant que personnel de l'entrepôt je souhaite qu'à chaque modification de stock avec succès, l'évènement soit stocké en historique avec l'article, le delta de stock et la date à la seconde près à laquelle j'ai lancé l'opération et qu'un message de confirmation apparaisse.
+En tant que personnel de l'entrepôt je souhaite qu'à chaque modification de stock avec succès, l'évènement soit stocké en historique avec l'article, le delta de stock et la date à la seconde près à laquelle le stock a été affecté et qu'un message de confirmation apparaisse.
 
 En tant que personnel de l'entrepôt, je souhaite pouvoir consulter l'historique des mouvements de stock avec la date, le mouvement et l'article.
 
