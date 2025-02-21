@@ -20,6 +20,6 @@ En tant que personnel de l'entrepôt je veux pouvoir obtenir un rapport des stoc
 
 En tant que personnel de l'entrepôt je souhaite qu'à chaque modification de stock avec succès, l'évènement soit stocké en historique avec l'article, le delta de stock et la date à la seconde près à laquelle j'ai lancé l'opération et qu'un message de confirmation apparaisse.
 
-En tant que personnel de l'entrepôt je souhaite pouvoir consulter l'historique.
+En tant que personnel de l'entrepôt, je souhaite pouvoir consulter l'historique des mouvements de stock avec la date, le mouvement et l'article.
 
 En tant que personnel de l'entrepôt je souhaite que lorsque que la quantité d'un article est diminuée et qu'elle passe sous le seuil de 5, un message d'alerte apparaisse.
